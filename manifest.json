@@ -1,0 +1,28 @@
+{
+  "manifest_version": 2,
+  "name": "Better post-to-Diigo",
+  "version": "0.1",
+  "browser_action": {
+  },
+  "permissions": ["activeTab"],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.diigo.com/post*"
+      ],
+      "js": ["content.js"]
+    }
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+D",
+        "mac": "Command+D"
+      }
+    }
+  }
+}
