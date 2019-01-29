@@ -20,8 +20,8 @@
   "commands": {
     "_execute_browser_action": {
       "suggested_key": {
-        "default": "Ctrl+D",
-        "mac": "Command+D"
+        "default": "Ctrl+B",
+        "mac": "Command+B"
       }
     }
   }
