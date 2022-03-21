@@ -1,11 +1,14 @@
-chrome.browserAction.onClicked.addListener(function() {
-  chrome.tabs.executeScript({
+chrome.action.onClicked.addListener(function(tab) {
+  chrome.scripting.executeScript({
+    target: {
+      tabId: tab.id,
+    },
     // From https://www.diigo.com/tools/post_to_diigo
-    code: `(function(){
+    func: () => {
       var url = location.href;
       var title = document.title || url;
       var desc = (window.getSelection ? window.getSelection().toString() : document.getSelection ? document.getSelection()  : document.selection.createRange().text);
-      ww=window.open(
+      window.open(
           'https://www.diigo.com/post?url=' + encodeURIComponent(url) +
               '&title=' + encodeURIComponent(title.replace(/"/g, '&quot;')) +
               '&desc=' + encodeURIComponent(desc.replace(/"/g, '&quot;')) +
@@ -13,6 +16,6 @@ chrome.browserAction.onClicked.addListener(function() {
           '_blank',
           'menubar=no,height=580,width=608,toolbar=no,scrollbars=no,status=no'
       );
-    })();`
+    },
   });
 });
